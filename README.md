@@ -63,7 +63,7 @@ pip -m install -r requirements.txt
 
 3. Add your API Key 
 
-* Google AI API, Open AI API, etc. generated from any platform. Google GenAI key is used here. I have hardcoded the API key. However, I won't recommend hardcoding, rather you can save it as an environment variable. Hardcoding is done solely for personal convenience. To find out how to save API key as an environment variable, visit this ChatGPT link: https://chatgpt.com/share/695107ff-fc6c-8000-a3e5-a64e3293cb73
+* Google AI API, Open AI API, etc. generated from any platform. Google GenAI key is used here. I have hardcoded the API key. However, I won't recommend hardcoding, rather you can save it as an environment variable. Hardcoding is done solely for personal convenience.
 
 export GOOGLE_API_KEY="YOUR_KEY"
 
@@ -96,6 +96,7 @@ Output CSV:
 
 
 Documented during the Prompt Engineering Course for Prompt Chaining and Content Generation
+
 
 
 
