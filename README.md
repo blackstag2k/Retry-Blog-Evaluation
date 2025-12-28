@@ -6,31 +6,46 @@ This project is about retrying an evaluation for three blog topics from respecti
 
 ```mermaid
 flowchart TD
+    A[Start Script] --> B[Import Libraries]
+    B --> C[Initialize Gemini Client]
+    C --> D[Define JSON Folder Path]
+    D --> E[Define System Prompt & Constants]
 
-A[Start]
-A --> B[Init Client]
+    E --> F[Initialize Empty Output List]
+    F --> G[Loop Through JSON Files]
 
-B --> C[Generate Outline]
-C --> D[Outline Result]
+    G --> H[Load JSON File]
+    H --> I[Extract Topic & Blog Content]
 
-D --> E[Generate Draft]
-E --> F[Draft Result]
+    I --> J[Call evaluate_content Function]
 
-F --> G[Generate Critique]
-G --> H[Critique Result]
+    subgraph EVAL [evaluate_content Function]
+        J1[Build User Prompt] --> J2[Combine with System Prompt]
+        J2 --> J3[Retry Loop Start]
+        J3 --> J4[Call Gemini API]
+        J4 --> J5[Extract Response Text]
+        J5 --> J6[Split CSV Values]
+        J6 --> J7{Valid CSV & Integers?}
+        J7 -->|Yes| J8[Return Scores Dictionary]
+        J7 -->|No| J9[Retry or Wait]
+        J9 --> J3
+        J3 -->|Max Retries Exceeded| J10[Return Zero Scores]
+    end
 
-H --> I[Create JSON Dict]
-I --> J[Save to output.json]
+    J --> K[Append Scores to Output List]
+    K --> G
 
-J --> K[Print]
-K --> L[End]
+    G -->|All Files Processed| L[Create Pandas DataFrame]
+    L --> M[Export CSV File]
+    M --> N[Print Success Message]
+    N --> O[End Script]
 ```
 
 ## Steps to Run the Code
 
 1. Cloning the repository:
 
-git clone: https://github.com/blackstag2k/JSON-Draft-Generation.git
+git clone: https://github.com/blackstag2k/Retry-Blog-Evaluation.git
 
 2. Installing the Dependencies for the project:
 
@@ -81,6 +96,7 @@ Output CSV:
 
 
 Documented during the Prompt Engineering Course for Prompt Chaining and Content Generation
+
 
 
 
