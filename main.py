@@ -6,7 +6,7 @@ from pathlib import Path
 
 client = genai.Client(api_key="ENTER_API_KEY")
 
-json_folder = Path(r"C:\Users\Bhaskar Rana\OneDrive\Desktop\GeminiProject\Python Exercises\Blog Topics Automation\Second Multiple Blog")
+json_folder = Path("LOCATION_OF_THE_INPUT_JSON_FOLDER")
 
 system_prompt = """You are an expert content evaluator, editor, and SEO reviewer.
 
@@ -107,5 +107,6 @@ for file in json_folder.glob("*.json"):
         output.append(blog_scores)
 
 df = pd.DataFrame(output)
-df.to_csv(r"C:\Users\Bhaskar Rana\OneDrive\Desktop\retry_evaluation_output.csv", index=False)
-print(f"saved in the retry_evaluation_output.csv")
+df.to_csv("ENTER_NAME_OF_THE_OUTPUT_CSV_FILE", index=False)
+
+print(f"saved in the output.csv")
